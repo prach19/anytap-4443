@@ -31,6 +31,7 @@ import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.VideoRecordEvent
 import androidx.core.content.PermissionChecker
+import com.prachisadhwani.android.anytap_app.databinding.ActivityMainBinding
 
 import java.io.File
 import java.io.IOException

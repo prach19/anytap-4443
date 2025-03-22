@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">anytap-app</string>
+    <string name="take_photo">take photo</string>
 </resources>
