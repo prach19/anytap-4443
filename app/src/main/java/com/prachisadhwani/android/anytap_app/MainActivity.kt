@@ -1,6 +1,7 @@
 package com.prachisadhwani.android.anytap_app
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.os.Build
@@ -22,6 +23,9 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.widget.RelativeLayout
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
@@ -47,6 +51,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var cameraExecutor: ExecutorService
 
+
+    var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var frontCam = false
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -54,13 +63,25 @@ class MainActivity : AppCompatActivity() {
 
         // Request camera permissions
         if (allPermissionsGranted()) {
-            startCamera()
+            startCamera(cameraSelector)
         } else {
             requestPermissions()
         }
 
+
         // Set up the listeners for take photo and video capture buttons
-        viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
+        val cameraLayout = findViewById<RelativeLayout>(R.id.camera_layout)
+        cameraLayout.setOnTouchListener { _, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                val tapX = motionEvent.x
+                val tapY = motionEvent.y
+                Log.d("MYDEBUG", "Tap detected at X: $tapX, Y: $tapY")
+
+                // Capture the photo
+                takePhoto()
+            }
+            true
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
@@ -107,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun startCamera() {
+    private fun startCamera(cs: CameraSelector) {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
         cameraProviderFuture.addListener({
@@ -123,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             val imageCapture = ImageCapture.Builder().build()
 
             // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val cameraSelector = cs
 
             try {
                 // Unbind use cases before rebinding
@@ -184,7 +205,19 @@ class MainActivity : AppCompatActivity() {
                     "Permission request denied",
                     Toast.LENGTH_SHORT).show()
             } else {
-                startCamera()
+                startCamera(cameraSelector)
             }
         }
+
+    private fun flipCamera() {
+        cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
+            CameraSelector.DEFAULT_FRONT_CAMERA
+        } else {
+            CameraSelector.DEFAULT_BACK_CAMERA
+        }
+
+        Log.d("MYDEBUG", "Camera flipped")
+
+        startCamera(cameraSelector) // Restart camera with new selector
+    }
 }

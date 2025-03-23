@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tasks_array">
+        <item>Selfie</item>
+        <item>Group Selfie</item>
+        <item>Environment</item>
+    </string-array>
+    <string-array name="orientation_array">
+        <item>Portrait</item>
+        <item>Landscape</item>
+        <item>Environment</item>
+    </string-array>
+</resources>

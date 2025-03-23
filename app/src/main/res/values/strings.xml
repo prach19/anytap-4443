@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">anytap-app</string>
+    <string name="app_name">AnyTap</string>
     <string name="take_photo">take photo</string>
+    <string name="setuptitletext">AnyTap Setup</string>
+    <string name="button03text">Exit</string>
+    <string name="button01text">Continue</string>
+    <string name="paramlabelorderofcontroltext">Participant Code: </string>
+    <string name="tasksLabel">Task: </string>
+    <string name="orientationLabel">Orientation: </string>
+    <string name="Instructions">Please fill in the details above before continuing with the experiment.</string>
 </resources>
