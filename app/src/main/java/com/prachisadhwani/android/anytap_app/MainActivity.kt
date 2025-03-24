@@ -133,11 +133,16 @@ class MainActivity : AppCompatActivity() {
                     Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
                 }
 
+                //after image is taken, open feedback activity
                 override fun
                         onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
+                    val i = Intent(applicationContext,
+                        SetUpActivity::class.java)
+                    i.putExtra("image_uri", output.savedUri.toString())
+                    startActivity(i)
+
                 }
             }
         )

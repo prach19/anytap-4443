@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Anytapapp"
         tools:targetApi="31">
         <activity
+            android:name=".FeedbackActivity"
+            android:exported="false" />
+        <activity
             android:name=".SetUpActivity"
             android:exported="true"
             android:theme="@style/Theme.Anytapapp">
@@ -32,8 +35,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>
