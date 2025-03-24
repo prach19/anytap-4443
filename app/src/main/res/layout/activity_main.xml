@@ -12,4 +12,13 @@
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Go back to Set Up"
+        android:onClick="goBack"
+        android:src="@drawable/ic_back_arrow"/>
+
 </RelativeLayout>

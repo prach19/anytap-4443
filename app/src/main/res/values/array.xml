@@ -8,6 +8,5 @@
     <string-array name="orientation_array">
         <item>Portrait</item>
         <item>Landscape</item>
-        <item>Environment</item>
     </string-array>
 </resources>

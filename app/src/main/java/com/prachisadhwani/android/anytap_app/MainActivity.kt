@@ -3,6 +3,7 @@ package com.prachisadhwani.android.anytap_app
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -25,6 +26,9 @@ import androidx.camera.core.CameraSelector
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.RelativeLayout
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCaptureException
@@ -51,15 +55,26 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var cameraExecutor: ExecutorService
 
-
     var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var frontCam = false
+
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+
+        var b = intent.extras
+        var task = b?.getString("task")
+
+        if (task != null) {
+            if(task.contains("Selfie")){
+                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+            } else {
+                cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            }
+        }
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -209,15 +224,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    private fun flipCamera() {
-        cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
-            CameraSelector.DEFAULT_FRONT_CAMERA
-        } else {
-            CameraSelector.DEFAULT_BACK_CAMERA
-        }
+    fun goBack(v: View?){
+        val i = Intent(
+                applicationContext,
+        SetUpActivity::class.java)
+        startActivity(i)
+        finish()
 
-        Log.d("MYDEBUG", "Camera flipped")
-
-        startCamera(cameraSelector) // Restart camera with new selector
     }
 }
