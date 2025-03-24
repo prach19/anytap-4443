@@ -3,6 +3,7 @@ package com.prachisadhwani.android.anytap_app
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -11,6 +12,9 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
 import java.util.Locale
 
 class FeedbackActivity : AppCompatActivity() {
@@ -57,7 +61,7 @@ class FeedbackActivity : AppCompatActivity() {
             //format the data as one string to enter into the csv file
             dataEntry = String.format(
                 Locale.CANADA,
-                "%s, %s, %s, %s, %s, %s, %s",
+                "%s, %s, %s, %s, %s, %s, %s \n",
                 participantCode,
                 task,
                 orientation,
@@ -67,6 +71,7 @@ class FeedbackActivity : AppCompatActivity() {
                 tapLocationY
             )
             Log.d("MYDEBUG", dataEntry)
+            logCSV(dataEntry)
             val i = Intent(
                 applicationContext,
                 SetUpActivity::class.java
@@ -75,6 +80,19 @@ class FeedbackActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    fun logCSV(dataEntry: String) {
+        try{
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val file = File(downloadsDir, "data.csv")
+            val dataLogger = FileWriter(file, true)
+            dataLogger.append(dataEntry)
+            dataLogger.close()
+            Log.d("MYDEBUG", "data entered")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 
     }
-}

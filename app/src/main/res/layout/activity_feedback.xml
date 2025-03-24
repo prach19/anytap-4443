@@ -9,8 +9,9 @@
         android:id="@+id/imagePreview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/last_taken_image"
         android:scaleType="fitCenter" />
 
     <RelativeLayout
@@ -18,90 +19,97 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/satisfiedQ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@string/satisfiedq"/>
+            android:text="@string/satisfiedq" />
+
         <RadioGroup
             android:id="@+id/satisfiedAns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/satisfiedQ"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/yesBtn"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="Yes"/>
+                android:text="Yes" />
+
             <RadioButton
                 android:id="@+id/noBtn"
-                android:layout_below="@id/satisfiedQ"
-                android:layout_toRightOf="@id/yesBtn"
-                android:layout_marginTop="5dp"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="No"/>
+                android:text="@string/no" />
 
         </RadioGroup>
-
 
         <TextView
             android:id="@+id/comfortQ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/satisfiedAns"
             android:layout_margin="10dp"
-            android:text="@string/comfortq"
-            android:layout_below="@id/satisfiedAns"/>
+            android:text="@string/comfortq" />
+
         <RadioGroup
             android:id="@+id/comfortRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/comfortQ"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/uncomfortable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="1"/>
+                android:text="1" />
+
             <RadioButton
                 android:id="@+id/bitUncomfortable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="2"/>
+                android:text="2" />
+
             <RadioButton
                 android:id="@+id/neutral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="3"/>
+                android:text="3" />
+
             <RadioButton
                 android:id="@+id/bitComfortable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="4"/>
+                android:text="4" />
+
             <RadioButton
                 android:id="@+id/comfortable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="5"/>
+                android:text="5" />
 
         </RadioGroup>
 
@@ -109,28 +117,29 @@
             android:id="@+id/labelUncomfortable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Uncomfortable"
-            android:textAlignment="center"
+            android:layout_below="@id/comfortRating"
             android:layout_marginHorizontal="5dp"
-            android:layout_below="@id/comfortRating"/>
+            android:text="Uncomfortable"
+            android:textAlignment="center" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Comfortable"
-            android:textAlignment="center"
-            android:layout_marginHorizontal="5dp"
             android:layout_below="@id/comfortRating"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="5dp"
+            android:text="Comfortable"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
             android:layout_below="@id/labelUncomfortable"
-            android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:onClick="onSubmit"/>
+            android:layout_marginTop="20dp"
+            android:onClick="onSubmit"
+            android:text="@string/submit" />
 
     </RelativeLayout>
-
 </LinearLayout>
+

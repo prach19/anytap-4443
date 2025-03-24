@@ -7,8 +7,12 @@
     <string name="paramlabelorderofcontroltext">Participant Code: </string>
     <string name="tasksLabel">Task: </string>
     <string name="orientationLabel">Orientation: </string>
-    <string name="Instructions">Please fill in the details above before continuing with the experiment.</string>
+    <string name="form_instructions">Please fill in the details above before continuing with the experiment.</string>
     <string name="satisfiedq">Are you happy/satisfied with this image?</string>
-    <string name="comfortq">Rate your comfortability with how you took this picture.</string>
+    <string name="comfortq">Please rate your comfortability with how you took this picture.</string>
     <string name="submit">Submit</string>
+    <string name="last_taken_image">last taken image</string>
+    <string name="no">No</string>
+    <string name="consent_reminder">Please ensure that you have read and signed the consent form prior to participation.</string>
+    <string name="exp_instructions">Tap anywhere on the screen to capture an image according to the Task &amp; Orientation. \n \n If you forget your task or orientation, please ask the researcher.</string>
 </resources>

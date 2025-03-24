@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prachisadhwani.android.anytap_app.databinding.ActivityMainBinding
 
@@ -37,29 +38,30 @@ class SetUpActivity : AppCompatActivity() {
     }
 
     fun clickOK(view: View?) {
-        // get user's choices...
+        // get participant/researcher input
         val tasksSpinner: Spinner = findViewById(R.id.tasksSpinner)
-        val partiCode: EditText = findViewById<EditText>(R.id.participantCode)
+        val partiCode: EditText = findViewById(R.id.participantCode)
         val orientationSpinner: Spinner = findViewById(R.id.orientationSpinner)
         val task = tasksSpinner.selectedItem.toString()
         val orientation = orientationSpinner.selectedItem.toString()
         val code = partiCode.text.toString()
 
-        // bundle up parameters to pass on to activity
-        val b = Bundle()
-        b.putString("code", code)
-        b.putString("task", task)
-        b.putString("orientation", orientation)
+        if(task.isEmpty()){
+            Toast.makeText(this, "Please enter participant code before continuing.", Toast.LENGTH_SHORT).show()
+        } else {
+            // bundle up parameters to pass on to activity
+            val b = Bundle()
+            b.putString("code", code)
+            b.putString("task", task)
+            b.putString("orientation", orientation)
 
-        // start experiment activity
-        val i = Intent(
-            applicationContext,
-             MainActivity::class.java
-        )
-        i.putExtras(b)
-        startActivity(i)
-
-        // comment out (return to setup after clicking BACK in main activity
-        //finish();
+            // start experiment activity
+            val i = Intent(
+                applicationContext,
+                MainActivity::class.java
+            )
+            i.putExtras(b)
+            startActivity(i)
+        }
     }
 }

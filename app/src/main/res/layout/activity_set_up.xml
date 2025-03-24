@@ -19,13 +19,27 @@
             android:textSize="25sp"
             android:layout_marginTop="50dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textAlignment="center"
+        android:text="@string/consent_reminder"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/form_instructions"
+        android:textAlignment="center"
+        android:textSize="16sp"/>
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginVertical="50dp">
+            android:layout_marginVertical="10dp">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -82,25 +96,25 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Instructions"
+                android:text="@string/exp_instructions"
                 android:textAlignment="center"
                 android:textSize="16sp"/>
 
             <Button
-                android:id="@+id/Button01"
+                android:id="@+id/setup_continue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="clickOK"
                 android:text="@string/button01text"
                 android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="10dp"
                 android:textAppearance="?android:attr/textAppearanceMedium">
             </Button>
 
