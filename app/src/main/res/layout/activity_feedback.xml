@@ -5,15 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Top Half: Display Captured Image -->
     <ImageView
         android:id="@+id/imagePreview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginTop="20dp"
         android:scaleType="fitCenter" />
 
-    <!-- Bottom Half: Form -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,23 +24,34 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/satisfiedq"/>
-        <Button
-            android:id="@+id/yesBtn"
-            android:layout_width="100dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="10dp"
+        <RadioGroup
+            android:id="@+id/satisfiedAns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/satisfiedQ"
-            android:text="Yes"/>
-        <Button
-            android:id="@+id/noBtn"
-            android:layout_below="@id/satisfiedQ"
-            android:layout_toRightOf="@id/yesBtn"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_width="100dp"
-            android:layout_height="48dp"
-            android:text="No"/>
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+            <RadioButton
+                android:id="@+id/yesBtn"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:text="Yes"/>
+            <RadioButton
+                android:id="@+id/noBtn"
+                android:layout_below="@id/satisfiedQ"
+                android:layout_toRightOf="@id/yesBtn"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="No"/>
+
+        </RadioGroup>
+
 
         <TextView
             android:id="@+id/comfortQ"
@@ -49,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/comfortq"
-            android:layout_below="@id/yesBtn"/>
+            android:layout_below="@id/satisfiedAns"/>
         <RadioGroup
             android:id="@+id/comfortRating"
             android:layout_width="match_parent"
@@ -94,6 +104,7 @@
                 android:text="5"/>
 
         </RadioGroup>
+
         <TextView
             android:id="@+id/labelUncomfortable"
             android:layout_width="wrap_content"
@@ -114,10 +125,11 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="@string/submit"
             android:layout_below="@id/labelUncomfortable"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
+            android:onClick="onSubmit"/>
 
     </RelativeLayout>
 

@@ -57,6 +57,11 @@ class MainActivity : AppCompatActivity() {
 
     var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
+    lateinit var task: String
+    lateinit var code: String
+    lateinit var orientation: String
+    lateinit var tapLocationX: String
+    lateinit var tapLocationY: String
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,16 +70,15 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        var b = intent.extras
-        var task = b?.getString("task")
-
-        if (task != null) {
+        val b = intent.extras
+        task = b?.getString("task").toString()
+        code = b?.getString("code").toString()
+        orientation = b?.getString("orientation").toString()
             if(task.contains("Selfie")){
                 cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             } else {
                 cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             }
-        }
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -90,6 +94,8 @@ class MainActivity : AppCompatActivity() {
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
                 val tapX = motionEvent.x
                 val tapY = motionEvent.y
+                tapLocationX = tapX.toString()
+                tapLocationY = tapY.toString()
                 Log.d("MYDEBUG", "Tap detected at X: $tapX, Y: $tapY")
 
                 // Capture the photo
@@ -138,10 +144,18 @@ class MainActivity : AppCompatActivity() {
                         onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+                    val b = Bundle()
+                    b.putString("code", code)
+                    b.putString("task", task)
+                    b.putString("orientation", orientation)
+                    b.putString("tapLocationX", tapLocationX)
+                    b.putString("tapLocationY", tapLocationY)
+                    b.putString("image_uri", output.savedUri.toString())
                     val i = Intent(applicationContext,
-                        SetUpActivity::class.java)
-                    i.putExtra("image_uri", output.savedUri.toString())
+                        FeedbackActivity::class.java)
+                   i.putExtras(b)
                     startActivity(i)
+                    finish()
 
                 }
             }
