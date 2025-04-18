@@ -86,10 +86,16 @@ class FeedbackActivity : AppCompatActivity() {
         try{
             val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             val file = File(downloadsDir, "data.csv")
-            val dataLogger = FileWriter(file, true)
-            dataLogger.append(dataEntry)
-            dataLogger.close()
-            Log.d("MYDEBUG", "data entered")
+            if (file.exists()) {
+                Log.d("FileCheck", "File exists at: ${file.absolutePath}")
+                val dataLogger = FileWriter(file, true)
+                dataLogger.append(dataEntry)
+                dataLogger.close()
+                Log.d("MYDEBUG", "data entered")
+            } else {
+                Log.d("FileCheck", "File not found")
+            }
+
         } catch (e: IOException) {
             e.printStackTrace()
         }
